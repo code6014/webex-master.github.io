@@ -1,23 +1,17 @@
-<h2>नमस्ते (Namaste)🙏🏻 , I'm Shruti Sinha! <img src="https://media.giphy.com/media/12oufCB0MyZ1Go/giphy.gif" width="50"></h2>
+<h2>नमस्ते (Namaste)🙏🏻 , I'm Raushan Kumar Gupta! <img src="https://media.giphy.com/media/12oufCB0MyZ1Go/giphy.gif" width="50"></h2>
 <img align='right' src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="230">
-<p><em>This is my entry for  <a href="https://microsoft.acehacker.com/engage2021/index.html">Microsoft Engage'21. </a><img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> 
-</em></p>
+
 
 <br>All the supporting technical documentation and the demo video are available in the documentation folder of this repo.<br><br>
 
 In the age of social distancing, Let's Meet 
 ==============
-#### A Microsoft Teams Clone built for Microsoft Engage 2021. ####
+
 
 <br>
 
 The Challenge
 ------------
-
-Build a Microsoft Teams clone.
-
-The solution should be a fully functional prototype with at least one mandatory functionality - a minimum of two participants should be able connect with each other using the product to have a video conversation.
-
 
 What I Accomplished
 -------------------
@@ -37,15 +31,10 @@ I successfully implemented the video calling feature. More than two people can c
 9. Screenshare
 10. Collaborative whiteboard
 11. Leave meeting 
+12. Recording Option
+13. Share meet link via Whatsapp
 
-What I Learned
---------------------------------
 
-Microsoft and the Acehacker team kept various sessions for us to learn more about the work culture at Microsoft. We also learned about new technologies that have been developed by Microsoft (ie Azure Communication Services) and about the Agile Methodology. 
-
-The <strong>Agile Scrum Methodology</strong> has heavily influenced my work in the past 1 month. 
-Agile scrum methodology is a project management system that relies on incremental development. Each iteration consists of two- to four-week sprints, where each sprint's goal is to build the most important features first and come out with a potentially deliverable product. <br>
-Microsoft assigned us three sprints of 1-2 weeks each: <strong>Design, Build, and Adopt.</strong><br><br>
 In the <strong>first two weeks</strong>, I researched on WebRTC, Agora, Jitsi and socket.io to decide on which SDK I wanted to use for my web app. Ended up deciding on WebRTC. Got working on establishing video communication between two connections. <br><br>
 In the <strong>third and fourth week</strong>, I worked on adding additional features to my web app. <br><br>
 In the <strong>last week</strong>, I ended up adding the chat feature and worked on the landing page as well as the UI for the whole web app.<br><br>
@@ -127,11 +116,6 @@ Check out the following links!
 -----------------
 <br>
 
-Technical Documentation: [lets-meet.pdf](documentation/lets-meet.pdf)
-<br><br>
-Web App Flow: [web-app-flow.png](documentation/web-app-flow.png)
-<br><br>
-Demo Video: [Webex!](https://youtu.be/Y7xJqFvXm6A)
 
 
 
