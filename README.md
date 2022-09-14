@@ -45,7 +45,7 @@ To run the web app in your local device, run the following commands in your term
 ```bash
 cd folder-you-want-to-download-code-in
 
-# git clone 
+# git clone: https://github.com/code6014/webex-master.github.io.git
 
 cd Webex
 ```
