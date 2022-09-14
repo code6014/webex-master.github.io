@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Webex</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/6510466b6c.js" crossorigin="anonymous"></script>
+    <link href='https://css.gg/record.css' rel='stylesheet'>
+
+    <!--Recoding icon  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Record &  stop icons -->
+    <link href="https://css.gg/css?=|play-stop-r|record" rel="stylesheet">
+    <link href="https://css.gg/css?=|play-stop-o" rel="stylesheet">
+    <link href="https://css.gg/css?=|arrow-down-o" rel="stylesheet">
+
+
+    <!-- Icons of share screen -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Icon of white board -->
+    <link href='https://css.gg/laptop.css' rel='stylesheet'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+
+
+
+    <script>
+        const params = new URLSearchParams(location.search);
+        if (!params.get("room")) location.href = "/";
+    </script>
+</head>
+
+<body>
+
+
+
+
+    <div class="overlay" id="overlay">
+        <div class="box">
+            <div class="head-name">Enter your Name</div>
+            <input type="text" class="name-field" placeholder="Type here.." id="name-field"></input><br>
+            <button class="continue-name">Continue</button>
+        </div>
+    </div>
+
+
+
+    <div class="container-room">
+        <div class="left-cont">
+
+            <div class="video-cont-single" id="vcont">
+                <div class="video-box">
+                    <video class="video-frame" id="vd1" autoplay playsinline>
+                    </video>
+                    <div class="nametag" id="myname">yourname</div>
+                    <div class="mute-icon" id="mymuteicon"><i class="fas fa-microphone-slash"></i></div>
+                    <div class="video-off" id="myvideooff">Video Off</div>
+                </div>
+            </div>
+
+            <div class="whiteboard-cont"><canvas id="whiteboard" height="1000" width="1000"></canvas>
+                <div class="colors-cont">
+                    <div class="black" onclick="setColor('black')"></div>
+                    <div class="red" onclick="setColor('#e74c3c')"></div>
+                    <div class="yellow" onclick="setColor('#f1c40f')"></div>
+                    <div class="green" onclick="setColor('#badc58')"></div>
+                    <div class="blue" onclick="setColor('#3498db')"></div>
+                    <div class="orange" onclick="setColor('#e67e22')"></div>
+                    <div class="purple" onclick="setColor('#9b59b6')"></div>
+                    <div class="pink" onclick="setColor('#fd79a8')"></div>
+                    <div class="brown" onclick="setColor('#834c32')"></div>
+                    <div class="grey" onclick="setColor('gray')"></div>
+                    <div class="eraser" onclick="setEraser()"><i class="fas fa-eraser"></i></div>
+                    <div class="clearboard" onclick="clearBoard()"><i class="fas fa-trash-alt"></i></div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="utils">
+
+                    <div class="audio">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div class="novideo">
+                        <i class="fas fa-video"></i>
+                    </div>
+
+                    <div class="screenshare tooltip">
+                        <!-- <i class="fas fa-desktop"></i> -->
+                        <span class="material-icons" style="padding: 10px; ">screen_share</span>
+                        <span class="tooltiptext">Share Screen</span>
+                    </div>
+
+                    <div class="board-icon tooltip">
+                        <!-- <i class="fas fa-chalkboard"></i> -->
+                        <span style="padding: 10px ; "> <i class="gg-laptop"></i></span>
+                        <!-- <i class="gg-laptop" ></i> -->
+                        <span class="tooltiptext">Whiteboard</span>
+                    </div>
+                    <div class="cutcall tooltip">
+                        <span style="padding: 10px ; margin-right: 5px;"> <i class='fas fa-phone-slash'></i></span>
+
+                        <span class="tooltiptext">Leave Call</span>
+                    </div>
+
+                    <!-- Element of recoding section and js in recordJs -->
+                    <span><a id="download" style="padding: 6px ;  box-sizing: content-box"><button type="button"
+                                class="btn btn-primary mb-4"><i class="gg-arrow-down-o"></i></button></a></span>
+                    <span style="padding: 6px ; box-sizing: content-box; "><button type="button"
+                            onclick="recordScreen()" class="btn btn-info"><i class="gg-record"></i></button></span>
+                    <span style="box-sizing: content-box; margin-right: 6px; "><button type="button" class="btn btn-danger" id="stop"
+                            disabled><i class="gg-play-stop-o"></i></button></span>
+
+                    <!-- Share on whatsapp -->
+                    <a href="https://api.whatsapp.com/send?text=108fbc7b4
+                    " data-action="share/whatsapp/share" target="_blank"> <span class="bi bi-whatsapp"></span></a>
+
+                </div>
+
+                <div class="copycode-cont">
+                    <div class="roomcode"></div>
+                    <button class="copycode-button" onclick="CopyClassText()">Copy Code</button>
+                   
+                </div>
+            </div>
+
+        </div>
+
+        <div class="right-cont">
+            <div class="head-title">
+                <div class="chats"><i class="fas fa-comment-alt mr-1"></i>Chats</div>
+            </div>
+
+            <div class="chat-cont">
+
+            </div>
+            <div class="chat-input-cont">
+                <div class="ci-cont"><input type="text" class="chat-input" placeholder="Type chat here.."></div>
+                <div class="ci-send"><button class="chat-send">Send</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/room.js"></script>
+</body>
+<!-- Adding script for recording -->
+<script>
+
+
+    let shouldStop = false;
+    let stopped = false;
+    const videoElement = document.getElementsByTagName("video")[0];
+    const downloadLink = document.getElementById('download');
+    const stopButton = document.getElementById('stop');
+    function startRecord() {
+        $('.btn-info').prop('disabled', true);
+        $('#stop').prop('disabled', false);
+        $('#download').css('display', 'none')
+    }
+    function stopRecord() {
+        $('.btn-info').prop('disabled', false);
+        $('#stop').prop('disabled', true);
+        $('#download').css('display', 'block')
+    }
+    const audioRecordConstraints = {
+        echoCancellation: true
+    }
+
+    stopButton.addEventListener('click', function () {
+        shouldStop = true;
+    });
+
+    const handleRecord = function ({ stream, mimeType }) {
+        startRecord()
+        let recordedChunks = [];
+        stopped = false;
+        const mediaRecorder = new MediaRecorder(stream);
+
+        mediaRecorder.ondataavailable = function (e) {
+            if (e.data.size > 0) {
+                recordedChunks.push(e.data);
+            }
+
+            if (shouldStop === true && stopped === false) {
+                mediaRecorder.stop();
+                stopped = true;
+            }
+        };
+
+        mediaRecorder.onstop = function () {
+            const blob = new Blob(recordedChunks, {
+                type: mimeType
+            });
+            recordedChunks = []
+            const filename = window.prompt('Enter file name');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = `${filename || 'recording'}.webm`;
+            stopRecord();
+            videoElement.srcObject = null;
+        };
+
+        mediaRecorder.start(200);
+    };
+
+    async function recordAudio() {
+        const mimeType = 'audio/webm';
+        shouldStop = false;
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: audioRecordConstraints });
+        handleRecord({ stream, mimeType })
+    }
+
+    async function recordVideo() {
+        const mimeType = 'video/webm';
+        shouldStop = false;
+        const constraints = {
+            audio: {
+                "echoCancellation": true
+            },
+            video: {
+                "width": {
+                    "min": 640,
+                    "max": 1024
+                },
+                "height": {
+                    "min": 480,
+                    "max": 768
+                }
+            }
+        };
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        videoElement.srcObject = stream;
+        handleRecord({ stream, mimeType })
+    }
+
+    async function recordScreen() {
+        const mimeType = 'video/webm';
+        shouldStop = false;
+        const constraints = {
+            video: {
+                cursor: 'motion'
+            }
+        };
+        if (!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia)) {
+            return window.alert('Screen Record not supported!')
+        }
+        let stream = null;
+        const displayStream = await navigator.mediaDevices.getDisplayMedia({ video: { cursor: "motion" }, audio: { 'echoCancellation': true } });
+        if (window.confirm("Record audio with screen?")) {
+            const audioContext = new AudioContext();
+
+            const voiceStream = await navigator.mediaDevices.getUserMedia({ audio: { 'echoCancellation': true }, video: false });
+            const userAudio = audioContext.createMediaStreamSource(voiceStream);
+
+            const audioDestination = audioContext.createMediaStreamDestination();
+            userAudio.connect(audioDestination);
+
+            if (displayStream.getAudioTracks().length > 0) {
+                const displayAudio = audioContext.createMediaStreamSource(displayStream);
+                displayAudio.connect(audioDestination);
+            }
+
+            const tracks = [...displayStream.getVideoTracks(), ...audioDestination.stream.getTracks()]
+            stream = new MediaStream(tracks);
+            handleRecord({ stream, mimeType })
+        } else {
+            stream = displayStream;
+            handleRecord({ stream, mimeType });
+        };
+        videoElement.srcObject = stream;
+    }
+
+</script>
+
+</html>
